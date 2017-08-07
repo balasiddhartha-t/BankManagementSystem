@@ -1,0 +1,69 @@
+USER DETAILS:
+-----------------------------------------------------------------
+CREATE TABLE user_details(
+	account_number bigint NOT NULL,
+	account_type varchar(20),
+	account_holder_name varchar(20),
+	account_balance int,
+	PRIMARY KEY (account_number)
+);
+
+-----------------------------------------------------------------
+HOME LOAN DETAILS:
+-----------------------------------------------------------------
+
+CREATE TABLE Home_loan_details(
+	home_loan_id varchar(16) NOT NULL ,
+	account_number bigint,
+	home_loan_account_number varchar(254),
+	loan_amount int,
+	loan_amount_date date,
+	annual_income int,
+	company_name varchar(254),
+	designation varchar(254),
+	total_exp int,
+	exp_current_company int,
+	loan_duration int,
+	PRIMARY KEY (home_loan_id) ,
+	FOREIGN KEY (account_number) REFERENCES user_details(account_number)
+);
+
+
+-----------------------------------------------------------------
+TRANSACTION DETAILS:
+-----------------------------------------------------------------
+CREATE TABLE transaction_details(
+	transaction_id int NOT NULL,
+	account_number bigint,
+	transaction_description varchar(20),
+	transaction_type varchar(2),
+	account_balance int,
+	PRIMARY KEY (transaction_id),
+	FOREIGN KEY (account_number) REFERENCES user_details(account_number)
+);
+
+
+
+-----------------------------------------------------------------
+EDUCATION LOAN DETAILS:
+-----------------------------------------------------------------
+CREATE TABLE education_loan_details(
+	education_loan_id varchar(16) NOT NULL,
+	account_number int,
+	edu_loan_account_number int,
+	edu_loan_amount int,
+	edu_loan_apply_date date,
+	father_annual_income int,
+	course_fee int,
+	course_name varchar(20),
+	father_name varchar(20),
+	id_card_number int,
+	PRIMARY KEY (education_loan_id),
+	FOREIGN KEY (account_number) REFERENCES user_details(account_number)
+)ENGINE=INNODB;
+
+
+
+
+
+
